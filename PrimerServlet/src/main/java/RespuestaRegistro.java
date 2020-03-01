@@ -18,7 +18,10 @@ public class RespuestaRegistro extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println(UtilidadesServlets.getCabecera("Datos introducidos"));
 		
-		String nombre = request.getParameter("nombre");
+		String nombre = "No se ha introducido el nombre";
+		if (request.getParameter("nombre")!=null && !request.getParameter("nombre").equals("")) {
+			nombre=request.getParameter("nombre");
+		}
 		out.println("<h2>Datos introducidos</h2>\r\n"
 				+ "<p>Los datos que has introducido son: </p>\r\n" 
 				+ "<p>Nombre: "+ nombre + " </p>\r\n" );
