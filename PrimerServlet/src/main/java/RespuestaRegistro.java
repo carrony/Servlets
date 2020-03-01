@@ -19,16 +19,28 @@ public class RespuestaRegistro extends HttpServlet {
 		out.println(UtilidadesServlets.getCabecera("Datos introducidos"));
 		
 		String nombre = request.getParameter("nombre");
-		int edad = Integer.parseInt(request.getParameter("edad"));
-		float altura = Float.parseFloat(request.getParameter("altura"));
-		String lenguajes [] = request.getParameterValues("leng");
 		out.println("<h2>Datos introducidos</h2>\r\n"
-				+ "<p>Los datos que has introducido son: </p>\r\n" + 
-				"  <p>Nombre: "+ nombre + " </p>\r\n" + 
-				"  <p>Edad:   "+ edad + " </p>\r\n" + 
-				"  <p>Altura: "+ altura + " </p>");
+				+ "<p>Los datos que has introducido son: </p>\r\n" 
+				+ "<p>Nombre: "+ nombre + " </p>\r\n" );
+		
+		int edad=0;
+		if (request.getParameter("edad")!=null && !request.getParameter("edad").equals("")) {
+			edad= Integer.parseInt(request.getParameter("edad"));
+			out.println("<p>Edad: "+ edad + " </p>\r\n");
+		} else {
+			out.println("<p>Edad: Edad no introducida</p>");
+		}
+		try {
+			float altura = Float.parseFloat(request.getParameter("altura"));
+			out.println("<p>Altura: "+ altura + " </p>\r\n");
+		} catch (NumberFormatException e) {
+			out.println("<p>Altura: "
+			    + "Error altura no introducida o formato incorrecto</p>\r\n");
+		}
+		
+		String lenguajes [] = request.getParameterValues("leng");
 		out.println("<p>Lenguajes: ");
-		for (int i=0; i<lenguajes.length;i++) {
+		for (int i=0; lenguajes!=null && i<lenguajes.length;i++) {
 			out.println(lenguajes[i]+" ");
 		}
 		out.println("</p>");
