@@ -26,7 +26,7 @@ public class RespuestaRegistro extends HttpServlet {
 		int edad=0;
 		if (request.getParameter("edad")!=null && !request.getParameter("edad").equals("")) {
 			edad= Integer.parseInt(request.getParameter("edad"));
-			out.println("<p>Edad: "+ edad + " </p>\r\n");
+			out.println("<p>Edad: "+ edad + " </p>\r\n"); 
 		} else {
 			out.println("<p>Edad: Edad no introducida</p>");
 		}
